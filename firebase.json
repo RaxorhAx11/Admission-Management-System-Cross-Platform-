@@ -1,0 +1,7 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "flutter": {"platforms":{"android":{"default":{"projectId":"admission-management-sys-a89a3","appId":"1:205951110639:android:2fe6652ad6a24a33f93a1a","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"admission-management-sys-a89a3","configurations":{"android":"1:205951110639:android:2fe6652ad6a24a33f93a1a","web":"1:205951110639:web:15f99513761888cbf93a1a","windows":"1:205951110639:web:3531f74e302ce263f93a1a"}}}}}
+}

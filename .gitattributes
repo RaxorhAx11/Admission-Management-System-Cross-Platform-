@@ -1,0 +1,26 @@
+* text=auto
+
+# Ensure Dart/Flutter source files use LF (works best cross-platform)
+*.dart text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+
+# Keep Windows scripts with CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Treat common binary assets correctly
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.ttf binary
+*.otf binary
+*.ttc binary
+*.mp3 binary
+*.mp4 binary
+*.mov binary
+
