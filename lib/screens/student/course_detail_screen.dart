@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:admission_management/core/constants/app_routes.dart';
 import 'package:admission_management/core/theme/app_theme.dart';
 import 'package:admission_management/models/course_model.dart';
-import 'package:admission_management/screens/student/admission_form_screen.dart';
 import 'package:admission_management/widgets/app_card.dart';
 
 /// Student: View course details and apply for admission.
@@ -52,10 +52,9 @@ class CourseDetailScreen extends StatelessWidget {
             const SizedBox(height: 24),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => AdmissionFormScreen(course: course),
-                  ),
+                Navigator.of(context).pushNamed(
+                  AppRoutes.admissionForm,
+                  arguments: course,
                 );
               },
               icon: const Icon(Icons.edit_document),

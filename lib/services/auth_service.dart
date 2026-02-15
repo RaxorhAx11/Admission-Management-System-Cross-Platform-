@@ -54,4 +54,11 @@ class AuthService {
   Future<void> signOut() async {
     await _auth.signOut();
   }
+
+  /// Update user display name in Firestore.
+  Future<void> updateUserName(String uid, String name) async {
+    await _firestore.collection(AppConstants.usersCollection).doc(uid).update({
+      AppConstants.name: name,
+    });
+  }
 }

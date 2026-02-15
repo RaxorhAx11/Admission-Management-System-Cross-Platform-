@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:admission_management/core/constants/app_routes.dart';
 import 'package:admission_management/core/theme/app_theme.dart';
 import 'package:admission_management/models/course_model.dart';
 import 'package:admission_management/providers/auth_provider.dart';
 import 'package:admission_management/providers/course_provider.dart';
-import 'package:admission_management/screens/student/course_detail_screen.dart';
 import 'package:admission_management/widgets/app_card.dart';
 import 'package:admission_management/widgets/loading_widget.dart';
 
@@ -34,10 +34,31 @@ class _CourseListScreenState extends State<CourseListScreen> {
         title: const Text('Available Courses'),
         actions: [
           IconButton(
+            icon: const Icon(Icons.newspaper_outlined),
+            tooltip: 'Education News',
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.educationNews);
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.list_alt),
             tooltip: 'My Applications',
             onPressed: () {
-              Navigator.of(context).pushNamed('/student/applications');
+              Navigator.of(context).pushNamed(AppRoutes.myApplications);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.person_outline),
+            tooltip: 'Profile',
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.profile);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: 'Settings',
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.settings);
             },
           ),
           IconButton(
@@ -45,7 +66,7 @@ class _CourseListScreenState extends State<CourseListScreen> {
             onPressed: () async {
               await context.read<AuthProvider>().signOut();
               if (context.mounted) {
-                Navigator.of(context).pushReplacementNamed('/login');
+                Navigator.of(context).pushReplacementNamed(AppRoutes.login);
               }
             },
           ),
@@ -87,10 +108,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
                 padding: const EdgeInsets.only(bottom: 12),
                 child: AppCard(
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => CourseDetailScreen(course: course),
-                      ),
+                    Navigator.of(context).pushNamed(
+                      AppRoutes.courseDetail,
+                      arguments: course,
                     );
                   },
                   child: _CourseTile(course: course),

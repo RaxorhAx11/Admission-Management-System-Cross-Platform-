@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:admission_management/core/constants/app_routes.dart';
 import 'package:admission_management/core/theme/app_theme.dart';
 import 'package:admission_management/providers/auth_provider.dart';
 import 'package:admission_management/widgets/app_card.dart';
@@ -48,9 +49,9 @@ class _LoginRegisterScreenState extends State<LoginRegisterScreen> {
     }
     if (success && mounted) {
       if (auth.isAdmin) {
-        Navigator.of(context).pushReplacementNamed('/admin');
+        Navigator.of(context).pushReplacementNamed(AppRoutes.adminDashboard);
       } else {
-        Navigator.of(context).pushReplacementNamed('/student/courses');
+        Navigator.of(context).pushReplacementNamed(AppRoutes.dashboard);
       }
     } else if (!success && mounted) {
       ScaffoldMessenger.of(context).showSnackBar(

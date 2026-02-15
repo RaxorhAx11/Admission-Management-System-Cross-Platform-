@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:admission_management/core/constants/app_constants.dart';
+import 'package:admission_management/core/constants/app_routes.dart';
 import 'package:admission_management/core/theme/app_theme.dart';
 import 'package:admission_management/models/application_model.dart';
 import 'package:admission_management/models/course_model.dart';
 import 'package:admission_management/providers/application_provider.dart';
 import 'package:admission_management/providers/auth_provider.dart';
 import 'package:admission_management/providers/course_provider.dart';
-import 'package:admission_management/screens/admin/application_detail_screen.dart';
 import 'package:admission_management/widgets/app_card.dart';
 import 'package:admission_management/widgets/loading_widget.dart';
 
@@ -55,10 +55,26 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen>
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.person_outline),
+            tooltip: 'Profile',
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.profile);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: 'Settings',
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.settings);
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
               await context.read<AuthProvider>().signOut();
-              if (context.mounted) Navigator.of(context).pushReplacementNamed('/login');
+              if (context.mounted) {
+                Navigator.of(context).pushReplacementNamed(AppRoutes.login);
+              }
             },
           ),
         ],
@@ -157,10 +173,9 @@ class _ApplicationsTab extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
                         child: AppCard(
                           onTap: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (_) => ApplicationDetailScreen(applicationId: app.applicationId),
-                              ),
+                            Navigator.of(context).pushNamed(
+                              AppRoutes.applicationDetail,
+                              arguments: app.applicationId,
                             );
                           },
                           child: _ApplicationTile(application: app),

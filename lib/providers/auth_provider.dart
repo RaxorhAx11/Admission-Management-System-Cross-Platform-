@@ -116,6 +116,19 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  /// Update display name in Firestore and refresh user.
+  Future<bool> updateUserName(String name) async {
+    final uid = _authService.currentUser?.uid;
+    if (uid == null || name.trim().isEmpty) return false;
+    try {
+      await _authService.updateUserName(uid, name.trim());
+      await refreshUser();
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<void> signOut() async {
     await _authService.signOut();
     _user = null;
